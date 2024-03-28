@@ -123,8 +123,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 # chat_mistral 
-model_name_or_path = "mistralai/Mistral-7B-Instruct-v0.2"
-def chatgpt(prompt, model_name_or_path, temperature=0.7, n=1, top_p=1, max_tokens=1024, stop=None,
+#model_name_or_path = "mistralai/Mistral-7B-Instruct-v0.2"
+def chatgpt(prompt, model_name_or_path = "mistralai/Mistral-7B-Instruct-v0.2", temperature=0.7, n=1, top_p=1, max_tokens=1024, stop=None,
                   presence_penalty=0, frequency_penalty=0, logit_bias={}, timeout=10):
     tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
     model = AutoModelForCausalLM.from_pretrained(model_name_or_path)
@@ -169,7 +169,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # get_log_probs
 
-def instructGPT_logprobs(prompt, model_name_or_path, temperature=0.7):
+def instructGPT_logprobs(prompt, model_name_or_path = "mistralai/Mistral-7B-Instruct-v0.2", temperature=0.7):
     tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
     model = AutoModelForCausalLM.from_pretrained(model_name_or_path)
 

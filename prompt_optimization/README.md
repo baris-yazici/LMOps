@@ -7,9 +7,14 @@ The ProTeGi program offers a framework for optimizing and evaluating prompts in 
 
 The main entrypoint is `main.py`
 
-# Quickstart:
+# Quickstart for ethos:
 ```
 time python main.py --task ethos --prompts prompts/ethos.md --data_dir data/ethos --out expt7_datasets/treatment.ucb.ethos.out --evaluator ucb
+```
+
+# Quickstart for liar:
+```
+time python main.py --task liar --prompts prompts/liar.md --data_dir data/liar --out expt7_datasets/treatment.ucb.liar.out --evaluator ucb
 ```
 
 This will run an experiment with UCB bandits for candidate selection. The program will print configuration settings and provide progress updates with each optimization round. The results, including candidate prompts and their associated scores, will be written to the specified output file.

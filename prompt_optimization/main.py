@@ -48,7 +48,7 @@ def get_scorer(scorer):
         raise Exception(f'Unsupported scorer: {scorer}')
 
 
-def get_args():
+'''def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--task', default='ethos')
     parser.add_argument('--data_dir', default='data/ethos')
@@ -86,8 +86,47 @@ def get_args():
     
     args = parser.parse_args()
 
-    return args
+    return args'''
 
+import argparse
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--task', default='liar')
+    parser.add_argument('--data_dir', default='data/liar')
+    parser.add_argument('--prompts', default='prompts/liar.md')
+    parser.add_argument('--out', default='expt7_datasets/treatment.ucb.liar.out')
+    parser.add_argument('--max_threads', default=8, type=int)
+    parser.add_argument('--temperature', default=0.5, type=float)
+
+    parser.add_argument('--optimizer', default='nl-gradient')
+    parser.add_argument('--rounds', default=6, type=int)
+    parser.add_argument('--beam_size', default=2, type=int)
+    parser.add_argument('--n_test_exs', default=200, type=int)
+
+    parser.add_argument('--minibatch_size', default=32, type=int)
+    parser.add_argument('--n_gradients', default=4, type=int)
+    parser.add_argument('--errors_per_gradient', default=4, type=int)
+    parser.add_argument('--gradients_per_error', default=1, type=int)
+    parser.add_argument('--steps_per_gradient', default=1, type=int)
+    parser.add_argument('--mc_samples_per_step', default=2, type=int)
+    parser.add_argument('--max_expansion_factor', default=4, type=int)
+
+    parser.add_argument('--engine', default="chatgpt", type=str)
+
+    parser.add_argument('--evaluator', default="ucb", type=str)
+    parser.add_argument('--scorer', default="01", type=str)
+    parser.add_argument('--eval_rounds', default=4, type=int)
+    parser.add_argument('--eval_prompts_per_round', default=4, type=int)
+    parser.add_argument('--samples_per_eval', default=16, type=int)
+    parser.add_argument('--c', default=1.0, type=float, help='exploration param for UCB. higher = more exploration')
+    parser.add_argument('--knn_k', default=2, type=int)
+    parser.add_argument('--knn_t', default=0.993, type=float)
+    # parser.add_argument('--reject_on_errors', action='store_true')
+
+    args = parser.parse_args()
+
+    return args
 
 if __name__ == '__main__':
     args = get_args()

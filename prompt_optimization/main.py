@@ -96,7 +96,7 @@ def get_args():
     parser.add_argument('--data_dir', default='data/liar')
     parser.add_argument('--prompts', default='prompts/liar.md')
     parser.add_argument('--out', default='expt7_datasets/treatment.ucb.liar.out')
-    parser.add_argument('--max_threads', default=8, type=int)
+    parser.add_argument('--max_threads', default=4, type=int)
     parser.add_argument('--temperature', default=0.5, type=float)
 
     parser.add_argument('--optimizer', default='nl-gradient')

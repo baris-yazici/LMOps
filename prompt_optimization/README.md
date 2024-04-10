@@ -7,10 +7,6 @@ The ProTeGi program offers a framework for optimizing and evaluating prompts in 
 
 The main entrypoint is `main.py`
 
-# Quickstart for ethos:
-```
-time python main.py --task ethos --prompts prompts/ethos.md --data_dir data/ethos --out expt7_datasets/treatment.ucb.ethos.out --evaluator ucb
-```
 
 # Quickstart for liar:
 ```

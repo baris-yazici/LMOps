@@ -1,0 +1,6 @@
+{"task": "ethos", "data_dir": "data/ethos", "prompts": "prompts/ethos.md", "out": "expt7_datasets/treatment.ucb.ethos.out", "max_threads": 2, "temperature": 0.7, "optimizer": "nl-gradient", "rounds": 6, "beam_size": 2, "n_test_exs": 1, "minibatch_size": 16, "n_gradients": 4, "errors_per_gradient": 4, "gradients_per_error": 1, "steps_per_gradient": 1, "mc_samples_per_step": 2, "max_expansion_factor": 4, "engine": "chatgpt", "evaluator": "ucb", "scorer": "01", "eval_rounds": 4, "eval_prompts_per_round": 4, "samples_per_eval": 16, "c": 1.0, "knn_k": 2, "knn_t": 0.993, "eval_budget": 256}
+======== ROUND 0
+0.00011229515075683594
+('# Task\nIs the following text hate speech?\n\n# Output format\nAnswer Yes or No as labels\n\n# Prediction\nText: {{ text }}\nLabel:',)
+(1.0,)
+[0.0]

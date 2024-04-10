@@ -193,10 +193,13 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # HuggingFaceH4/zephyr-7b-beta
 # stabilityai/stablelm-2-zephyr-1_6b
-def chatgpt(prompt, model_name_or_path = "stabilityai/stablelm-2-zephyr-1_6b", temperature=0.5, n=1, top_p=1, max_tokens=1024, stop=None,
+def chatgpt(prompt, model_name_or_path = "stabilityai/stablelm-2-zephyr-1_6b", temperature=0.5, n=1, top_p=1, max_tokens=256, stop=None,
                   presence_penalty=0, frequency_penalty=0, logit_bias={}, timeout=10):
     tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
     model = AutoModelForCausalLM.from_pretrained(model_name_or_path)
+
+    messages = [{"role": "user", "content": prompt}]
+
 
     # Encode prompt
     input_ids = tokenizer.encode(prompt, return_tensors="pt")
@@ -208,8 +211,9 @@ def chatgpt(prompt, model_name_or_path = "stabilityai/stablelm-2-zephyr-1_6b", t
                              top_p=top_p,
                              do_sample=True, 
                              num_return_sequences=n,
-                             bad_words_ids=[[tokenizer.pad_token_id]],  # Stop if model generates padding token
-                             no_repeat_ngram_size=3,  # Ensure no repeating n-grams
+                             pad_token_id = tokenizer.pad_token_id,
+            #                 bad_words_ids=[[tokenizer.pad_token_id]],  # Stop if model generates padding token
+            #                 no_repeat_ngram_size=3,  # Ensure no repeating n-grams
                              eos_token_id=tokenizer.eos_token_id,  # Stop if model generates EOS token
                              **logit_bias)
 
@@ -219,11 +223,10 @@ def chatgpt(prompt, model_name_or_path = "stabilityai/stablelm-2-zephyr-1_6b", t
     return decoded_responses
 
 
-
 # get_log_probs
 # stabilityai/stablelm-2-zephyr-1_6b
 # HuggingFaceH4/zephyr-7b-beta
-def instructGPT_logprobs(prompt, model_name_or_path = "stabilityai/stablelm-2-zephyr-1_6b", temperature=0.7):
+def instructGPT_logprobs(prompt, model_name_or_path = "stabilityai/stablelm-2-zephyr-1_6b", temperature=0.5):
     tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
     model = AutoModelForCausalLM.from_pretrained(model_name_or_path)
 
